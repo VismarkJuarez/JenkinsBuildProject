@@ -9,5 +9,4 @@ public class JenkinsBuildProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JenkinsBuildProjectApplication.class, args);
 	}
-
 }
