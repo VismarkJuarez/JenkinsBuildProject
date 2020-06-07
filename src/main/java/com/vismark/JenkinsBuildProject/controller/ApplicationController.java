@@ -9,7 +9,8 @@ public class ApplicationController {
     
     /**
      * A test endpoint to ensure the application is running adequately.
-     * @return
+     * @return A string message indicating whether communications are
+     * configured correctly.
      */
     @RequestMapping(method=RequestMethod.GET, value="/liveness")
 	public String testingHeaders() {
