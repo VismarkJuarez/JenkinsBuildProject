@@ -4,15 +4,10 @@ pipeline {
 
     stages {
 
-        stage("pull"){
-            steps{ //This is where the magic actualy happens
-                echo 'This is the PULL stage.'
-            }
-        }
-
         stage("clean"){
             steps{ //This is where the magic actually happens
                 echo 'This is the CLEAN stage.'
+                mvn clean
             }
         }
 
@@ -20,6 +15,7 @@ pipeline {
         stage("install"){
             steps{ //This is where the magic actually happens
                 echo 'This is the INSTALL stage.'
+                mvn install
             }
         }
 
