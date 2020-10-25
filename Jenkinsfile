@@ -3,12 +3,13 @@ pipeline {
     agent any //this pipeline will run on any available Jenkins agent -- not relevant if you don't have multiple Jenkins nodes.
 
     tools {
-        maven 'Maven 3.3.9'
+       maven 'maven3.6.1'
+       jdk 'jdk9'
     }
 
     stages {
 
-        stage("initialize Maven"){
+        stage("initialize"){
             steps{
                 sh '''
                     echo "PATH = ${PATH}"
