@@ -37,4 +37,11 @@ pipeline {
 
 node {
     //Groovy script
+    checkout scm
+    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_CREDENTIALS') {
+        def customImage = docker.build("jenkinsbuildproj:${env.BUILD_ID}")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
 }
