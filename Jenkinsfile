@@ -1,11 +1,20 @@
-node {
-  stage ('Build') {
-    git url: 'https://github.com/VismarkJuarez/JenkinsBuildProject.git'
-    withMaven {
-      sh "mvn clean verify"
-    } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
-  }
+pipeline {
+
+    tools {
+       maven 'maven3.6.1'
+       //jdk 'jdk9'
+    }
+
+    node {
+      stage ('Build') {
+        git url: 'https://github.com/VismarkJuarez/JenkinsBuildProject.git'
+        withMaven {
+          sh "mvn clean verify"
+        } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
+      }
+    }
 }
+
 
 // pipeline {
 //
