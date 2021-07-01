@@ -2,10 +2,10 @@ pipeline {
 
     agent any //this pipeline will run on any available Jenkins agent -- not relevant if you don't have multiple Jenkins nodes.
 
-    tools {
-       //maven 'maven3.6.1'
-       //jdk 'jdk9'
-    }
+//     tools {
+//        //maven 'maven3.6.1'
+//        //jdk 'jdk9'
+//     }
 
     stages {
 
