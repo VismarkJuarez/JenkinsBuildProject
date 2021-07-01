@@ -1,66 +1,48 @@
 pipeline {
 
+    agent any //this pipeline will run on any available Jenkins agent -- not relevant if you don't have multiple Jenkins nodes.
+
     tools {
-       maven 'maven3.6.1'
+       //maven 'maven3.6.1'
        //jdk 'jdk9'
     }
 
-    node {
-      stage ('Build') {
-        git url: 'https://github.com/VismarkJuarez/JenkinsBuildProject.git'
-        withMaven {
-          sh "mvn clean verify"
-        } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
-      }
+    stages {
+
+        stage("initialize"){
+            steps{
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage("clean"){
+            steps{ //This is where the magic actually happens
+                echo 'This is the CLEAN stage.'
+                sh 'mvn clean'
+            }
+        }
+
+
+        stage("install"){
+            steps{ //This is where the magic actually happens
+                echo 'This is the INSTALL stage.'
+                sh 'mvn install'
+            }
+        }
+
     }
 }
 
+node {
+    //Groovy script
+    checkout scm
+    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_CREDENTIALS') {
+        def customImage = docker.build("jenkinsbuildproj:${env.BUILD_ID}")
 
-// pipeline {
-//
-//     agent any //this pipeline will run on any available Jenkins agent -- not relevant if you don't have multiple Jenkins nodes.
-//
-//     tools {
-//        maven 'maven3.6.1'
-//        jdk 'jdk9'
-//     }
-//
-//     stages {
-//
-//         stage("initialize"){
-//             steps{
-//                 sh '''
-//                     echo "PATH = ${PATH}"
-//                     echo "M2_HOME = ${M2_HOME}"
-//                 '''
-//             }
-//         }
-//
-//         stage("clean"){
-//             steps{ //This is where the magic actually happens
-//                 echo 'This is the CLEAN stage.'
-//                 sh 'mvn clean'
-//             }
-//         }
-//
-//
-//         stage("install"){
-//             steps{ //This is where the magic actually happens
-//                 echo 'This is the INSTALL stage.'
-//                 sh 'mvn install'
-//             }
-//         }
-//
-//     }
-// }
-//
-// node {
-//     //Groovy script
-//     checkout scm
-//     docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_CREDENTIALS') {
-//         def customImage = docker.build("jenkinsbuildproj:${env.BUILD_ID}")
-//
-//         /* Push the container to the custom Registry */
-//         customImage.push()
-//     }
-// }
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
+}
