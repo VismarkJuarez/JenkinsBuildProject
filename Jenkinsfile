@@ -33,6 +33,13 @@ pipeline {
             }
         }
 
+        stage("see which directory were in"){
+                    steps{ //This is where the magic actually happens
+                        echo 'This the directory we are in: '
+                        sh 'ls'
+                    }
+                }
+
     }
 }
 
