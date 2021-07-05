@@ -3,8 +3,8 @@ pipeline {
     agent any //this pipeline will run on any available Jenkins agent -- not relevant if you don't have multiple Jenkins nodes.
 
     tools {
-       maven 'Maven 3.6'
-       jdk 'JDK 1.8'
+       maven 'Maven3.8.1'
+       jdk 'jdk8'
     }
 
     stages {
@@ -36,13 +36,13 @@ pipeline {
     }
 }
 
-node {
-    //Groovy script
-    checkout scm
-    docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_CREDENTIALS') {
-        def customImage = docker.build("jenkinsbuildproj:${env.BUILD_ID}")
-
-        /* Push the container to the custom Registry */
-        customImage.push()
-    }
+// node {
+//     //Groovy script
+//     checkout scm
+//     docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_CREDENTIALS') {
+//         def customImage = docker.build("jenkinsbuildproj:${env.BUILD_ID}")
+//
+//         /* Push the container to the custom Registry */
+//         customImage.push()
+//     }
 }
