@@ -33,15 +33,15 @@ pipeline {
             }
         }
 
-        stage("build docker image"){
-                    steps{ //This is where the magic actually happens
-                        echo 'Building the image'
-                        sh 'docker build -t jenkinsbuildproject .'
-
-                        echo 'showing list of all docker images'
-                        sh 'docker image ls'
-                    }
-                }
+//         stage("build docker image"){
+//                     steps{ //This is where the magic actually happens
+//                         echo 'Building the image'
+//                         sh 'docker build -t jenkinsbuildproject .'
+//
+//                         echo 'showing list of all docker images'
+//                         sh 'docker image ls'
+//                     }
+//                 }
 
     }
 }
