@@ -33,10 +33,13 @@ pipeline {
             }
         }
 
-        stage("see which directory were in"){
+        stage("build docker image"){
                     steps{ //This is where the magic actually happens
-                        echo 'This the directory we are in: '
-                        sh 'ls'
+                        echo 'Building the image'
+                        sh 'docker build -t jenkinsbuildproject .'
+
+                        echo 'showing list of all docker images'
+                        sh 'docker image ls'
                     }
                 }
 
