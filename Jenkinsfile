@@ -32,6 +32,7 @@ pipeline {
                 sh 'mvn install'
                 echo 'Listing directory:'
                 sh 'ls'
+                sh 'docker images'
             }
         }
 
