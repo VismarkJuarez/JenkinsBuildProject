@@ -30,6 +30,8 @@ pipeline {
             steps{ //This is where the magic actually happens
                 echo 'This is the INSTALL stage.'
                 sh 'mvn install'
+                echo 'Listing directory:'
+                sh 'ls'
             }
         }
 
