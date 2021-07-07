@@ -18,11 +18,9 @@ pipeline {
             }
         }
 
-        stage("initialize"){
+        stage("SHOW Artifactory credential details"){
             steps{
                 sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
                     echo "ARTIFACTORY CREDS" = ${ARTIFACTORY}
                 '''
             }
