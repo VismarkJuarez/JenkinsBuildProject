@@ -23,8 +23,7 @@ pipeline {
             steps{
 
                 withCredentials([usernamePassword(credentialsId: 'ARTIFACTORY',
-                    passwordVariable: 'password', usernameVariable", usernameVariable: 'username')])
-                {
+                    passwordVariable: 'password', usernameVariable", usernameVariable: 'username')]){
                    sh '''
                         echo "ARTIFACTORY CREDS = ${ARTIFACTORY}"
                    '''
