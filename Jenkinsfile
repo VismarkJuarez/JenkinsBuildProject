@@ -21,7 +21,7 @@ pipeline {
         stage("SHOW Artifactory credential details"){
 
             steps{
-                withCredentials([usernameColonPassword(credentialsId: 'ARTIFACTORY', variable: 'artifactory')]) {
+                withCredentials([usernameColonPassword(credentialsId: 'ARTIFACTORyY', variable: 'artifactory')]) {
                     sh '''
                       echo "$artifactory"
                     '''
