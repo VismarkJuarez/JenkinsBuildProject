@@ -18,6 +18,16 @@ pipeline {
             }
         }
 
+        stage("initialize"){
+            steps{
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    echo "ARTIFACTORY CREDS" = ${ARTIFACTORY}
+                '''
+            }
+        }
+
         stage("clean"){
             steps{ //This is where the magic actually happens
                 echo 'This is the CLEAN stage.'
