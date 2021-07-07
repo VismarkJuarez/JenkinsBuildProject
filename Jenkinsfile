@@ -21,7 +21,7 @@ pipeline {
         stage("SHOW Artifactory credential details"){
             steps{
                 sh '''
-                    echo "ARTIFACTORY CREDS" = ${ARTIFACTORY}
+                    echo "ARTIFACTORY CREDS = ${ARTIFACTORY}"
                 '''
             }
         }
